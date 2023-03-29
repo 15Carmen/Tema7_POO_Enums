@@ -23,15 +23,11 @@ public class Main {
 
         //Declaramos las variables
         int opcion; //Variable que guarda la opción que elige el usuario
-        String tieneCupon;  //Variable que guarda si el usuario tiene un cupón de descuento        String tieneCupon;   //Variable que guarda la respuesta del usuario
+        int opcionArticulo; //Variable que guarda la opción que elige el usuario para el artículo
+        String tieneCupon;  //Variable que guarda si el usuario tiene un cupón de descuento
 
-        //Creamos los objetos de la clase Articulo y los inicializamos
+        //Creamos el primer articulo
         Articulo articulo1 = crearArticulo();
-        System.out.println();
-        Articulo articulo2 = crearArticulo();
-
-        //Mostramos la información de los artículos
-        System.out.println(articulo1);
 
         //Mostramos el precio de venta al público del articulo1
         System.out.println("Precio de venta al público: " + articulo1.getPVP() + "€");
@@ -45,11 +41,13 @@ public class Main {
             hacerDescuento(articulo1);
         }
 
+        //Mostramos la información del artículo
+        System.out.println(articulo1);
+
         //Hacemos un salto de línea estético
         System.out.println();
 
-        //Mostramos la información del segundo artículo
-        System.out.println(articulo2);
+        Articulo articulo2 = crearArticulo();
 
         //Mostramos el precio de venta al público del articulo2
         System.out.println("Precio de venta al público: " + articulo2.getPVP() + "€");
@@ -62,6 +60,9 @@ public class Main {
             hacerDescuento(articulo2);
         }
 
+        //Mostramos la información del segundo artículo
+        System.out.println(articulo2);
+
         //Hacemos un salto de línea estético
         System.out.println();
 
@@ -73,19 +74,32 @@ public class Main {
 
             //Según la opción que elija el usuario, se ejecutará una acción u otra
             switch (opcion) {
-                case 1: {   //Si elige la opción 1, se venderá el artículo
-                    venderArticulo(articulo1);
-                    System.out.println();
-                    break;
+                case 1 -> {   //Si elige la opción 1, se venderá el artículo
+                    System.out.println("¿Qué artículo desea vender? Introduzca 1 o 2: ");
+                    opcionArticulo = sc.nextInt();
+
+                    if (opcionArticulo == 1) {
+                        venderArticulo(articulo1);
+                    } else if (opcionArticulo == 2) {
+                        venderArticulo(articulo2);
+                    } else {
+                        System.out.println("Opción no válida");
+                    }
                 }
-                case 2: {    //Si elige la opción 2, se almacenará el artículo
-                    almacenarArticulo(articulo1);
-                    System.out.println();
-                    break;
+                case 2 -> {    //Si elige la opción 2, se almacenará el artículo
+                    System.out.println("¿Qué artículo desea almacenar? Introduzca 1 o 2: ");
+                    opcionArticulo = sc.nextInt();
+
+                    if (opcionArticulo == 1) {
+                        almacenarArticulo(articulo1);
+                    } else if (opcionArticulo == 2) {
+                        almacenarArticulo(articulo2);
+                    } else {
+                        System.out.println("Opción no válida");
+                    }
                 }
-                case 3: {    //Si elige la opción 3, se saldrá del programa
-                    System.out.println("Hasta luego");
-                    break;
+                case 3 -> {    //Si elige la opción 3, se saldrá del programa
+                    System.out.println("Hasta luego! :D");
                 }
             }
         } while (opcion != 3);
@@ -105,7 +119,7 @@ public class Main {
 
         //Pedimos los datos al usuario
         System.out.println("Introduce el nombre del artículo");
-        nombre = sc.nextLine();
+        nombre = sc.next();
         System.out.println("Introduce el precio sin IVA del artículo");
         precioSinIva = sc.nextDouble();
         System.out.println("Introduce cuantos artículos quedan en el almacén");

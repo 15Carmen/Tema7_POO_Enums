@@ -35,7 +35,6 @@ public class Articulo {
      */
     private Departamento departamento;
 
-
     /**
      * Constructor con parámetros de la clase Articulo
      *
